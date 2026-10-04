@@ -1,0 +1,18 @@
+{
+  "name": "ForgeEnergy | Energy Transmutation & Deep Work Vault",
+  "short_name": "ForgeEnergy",
+  "description": "A privacy-first, zero-server psychological productivity suite for energy transmutation, urge surfing, and deep work focus.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F7F2EB",
+  "theme_color": "#8B9A6E",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "health", "utilities"]
+}

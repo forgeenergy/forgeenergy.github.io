@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { VaultApp } from '../../components/VaultApp';
+
+const title = 'ForgeEnergy | 100% クライアントサイド エネルギー昇華＆ディープワーク・ヴォールト';
+const description = '完全プライバシー重視の心理的生産性スイート。生物学的インパルスをコード実装、読書、筋力、集中力へと変換。データは一切外部に送信されません。';
+const canonicalUrl = 'https://forgeenergy.github.io/ja/';
+---
+
+<Layout
+  title={title}
+  description={description}
+  locale="ja"
+  canonicalUrl={canonicalUrl}
+>
+  <VaultApp client:load currentLocale="ja" />
+</Layout>

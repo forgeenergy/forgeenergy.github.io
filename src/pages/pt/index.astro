@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { VaultApp } from '../../components/VaultApp';
+
+const title = 'ForgeEnergy | Cofre de Transmutação de Energia e Foco Profundo 100% no Navegador';
+const description = 'Uma suíte de produtividade psicológica focada na privacidade. Converta impulsos biológicos em código, leitura profunda e força física com zero envio de dados a servidores.';
+const canonicalUrl = 'https://forgeenergy.github.io/pt/';
+---
+
+<Layout
+  title={title}
+  description={description}
+  locale="pt"
+  canonicalUrl={canonicalUrl}
+>
+  <VaultApp client:load currentLocale="pt" />
+</Layout>

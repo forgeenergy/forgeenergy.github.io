@@ -1,0 +1,363 @@
+---
+import '../styles/global.css';
+import type { Locale } from '../i18n/translations';
+
+interface Props {
+  title: string;
+  description: string;
+  locale: Locale;
+  canonicalUrl: string;
+}
+
+const { title, description, locale, canonicalUrl } = Astro.props;
+
+// Global Tier-1 alternate language URLs
+const alternateUrls: Record<Locale, string> = {
+  en: 'https://forgeenergy.github.io/',
+  es: 'https://forgeenergy.github.io/es/',
+  fr: 'https://forgeenergy.github.io/fr/',
+  pt: 'https://forgeenergy.github.io/pt/',
+  ja: 'https://forgeenergy.github.io/ja/',
+};
+
+const localeToOgLocale: Record<Locale, string> = {
+  en: 'en_US',
+  es: 'es_ES',
+  fr: 'fr_FR',
+  pt: 'pt_BR',
+  ja: 'ja_JP',
+};
+
+// FAQ Schema questions matching the on-page FAQ Section
+const faqSchemaMap: Record<Locale, Array<{ q: string; a: string }>> = {
+  en: [
+    {
+      q: 'What is sexual transmutation and how does ForgeEnergy work?',
+      a: 'Sexual and energetic transmutation is the practice of channeling primal biological impulses into creative, intellectual, and physical achievements. ForgeEnergy gives you an immediate somatic intervention to intercept compulsive urges and anchor them directly into deep work.',
+    },
+    {
+      q: 'How does the 2-minute tactical box breathing visualizer stop cravings?',
+      a: 'Navy SEAL Tactical Box Breathing (4s Inhale, 4s Hold, 4s Exhale, 4s Hold) stimulates the vagus nerve, rapidly engaging the parasympathetic nervous system to lower heart rate and calm impulse loops.',
+    },
+    {
+      q: 'What is Urge Surfing and why is it superior to sheer willpower?',
+      a: 'Pioneered by Dr. G. Alan Marlatt, Urge Surfing treats cravings as ocean waves that peak within 2-3 minutes and dissolve. Instead of fighting impulses with exhausting willpower, you mindfully observe sensations until the wave subsides.',
+    },
+    {
+      q: 'Why is ForgeEnergy 100% client-side with zero server storage?',
+      a: 'Your recovery habits and streaks should remain strictly private. ForgeEnergy uses zero databases, zero cloud telemetry, and zero tracking cookies. All data resides in your browser localStorage.',
+    },
+    {
+      q: 'What biological milestones occur at 7, 14, 30, and 90 days?',
+      a: 'By Day 7, androgen receptor utilization peaks (+145.7%). By Day 14, dopamine D2/D3 receptors re-sensitize. By Day 30, Delta-FosB clears from the nucleus accumbens, dissolving brain fog. By Day 90, executive prefrontal mastery is consolidated.',
+    },
+  ],
+  es: [
+    {
+      q: '¿Qué es la transmutación sexual y cómo funciona ForgeEnergy?',
+      a: 'La transmutación sexual y energética consiste en canalizar los impulsos biológicos primordiales hacia logros creativos, intelectuales y físicos. ForgeEnergy proporciona una intervención somática inmediata para convertir urgencias en trabajo profundo.',
+    },
+    {
+      q: '¿Cómo detiene los antojos la respiración táctica cuadrada de 2 minutos?',
+      a: 'La respiración cuadrada de los Navy SEALs estimula el nervio vago y activa el sistema parasimpático, reduciendo el ritmo cardíaco y desactivando el impulso compulsivo.',
+    },
+    {
+      q: '¿Qué es el Urge Surfing y por qué supera a la fuerza de voluntad?',
+      a: 'Desarrollado por el Dr. G. Alan Marlatt, el Urge Surfing enseña que las urgencias alcanzan su pico en 2-3 minutos y se disuelven solas al observarlas con atención plena.',
+    },
+    {
+      q: '¿Por qué ForgeEnergy es 100% del lado del cliente sin servidores?',
+      a: 'Tus hábitos personales y rachas residen únicamente en tu navegador. Cero bases de datos externas, cero rastreo y opción de respaldo cifrado AES-256.',
+    },
+    {
+      q: '¿Qué hitos biológicos ocurren a los 7, 14, 30 y 90 días?',
+      a: 'Día 7: optimización de andrógenos (+145%). Día 14: resensibilización dopaminérgica D2/D3. Día 30: depuración de Delta-FosB y claridad mental. Día 90: soberanía prefrontal.',
+    },
+  ],
+  fr: [
+    {
+      q: 'Qu’est-ce que la transmutation sexuelle et comment fonctionne ForgeEnergy ?',
+      a: 'La transmutation énergétique est la redirection consciente de l’énergie vitale et dopaminergique vers la création intellectuelle et physique sans aucune collecte de données.',
+    },
+    {
+      q: 'Comment la respiration carrée de 2 minutes stoppe-t-elle les compulsions ?',
+      a: 'La respiration tactique des Navy SEALs stimule le nerf vague, activant le système parasympathique pour apaiser l’excitation du système nerveux en moins de 120 secondes.',
+    },
+    {
+      q: 'Qu’est-ce que l’Urge Surfing et pourquoi est-ce plus efficace que la volonté ?',
+      a: 'Conçu par le Dr G. Alan Marlatt, l’Urge Surfing consiste à observer la vague de l’impulsion qui culmine en 2 à 3 minutes avant de s’estomper naturellement.',
+    },
+    {
+      q: 'Pourquoi ForgeEnergy est-il 100% côté client sans serveur ?',
+      a: 'Vos habitudes ne regardent que vous. Zéro base de données, zéro cookie et chiffrement AES-256 local.',
+    },
+    {
+      q: 'Quelles étapes biologiques sont franchies à 7, 14, 30 et 90 jours ?',
+      a: 'Jour 7 : pic androgénique. Jour 14 : resensibilisation D2/D3. Jour 30 : élimination de Delta-FosB. Jour 90 : suprématie préfrontale.',
+    },
+  ],
+  pt: [
+    {
+      q: 'O que é transmutação sexual e como o ForgeEnergy funciona?',
+      a: 'A transmutação é a prática de canalizar impulsos biológicos primordiais para produção criativa e intelectual com intervenção somática imediata.',
+    },
+    {
+      q: 'Como a respiração tática de 2 minutos interrompe os impulsos?',
+      a: 'A respiração quadrada dos Navy SEALs estimula o nervo vago e acalma o sistema nervoso simpático, baixando os batimentos cardíacos.',
+    },
+    {
+      q: 'O que é o Urge Surfing e por que supera a força de vontade?',
+      a: 'O Urge Surfing ensina a observar a onda do impulso subir e se dissipar em 2-3 minutos sem recorrer à força de vontade exaustiva.',
+    },
+    {
+      q: 'Por que o ForgeEnergy é 100% no navegador sem servidores?',
+      a: 'Seus dados e hábitos pertencem apenas a você. Sem servidores na nuvem, sem cookies de rastreamento, 100% offline.',
+    },
+    {
+      q: 'Quais marcos biológicos ocorrem aos 7, 14, 30 e 90 dias?',
+      a: 'Dia 7: pico de andrógenos (+145%). Dia 14: recuperação D2/D3. Dia 30: depuração de Delta-FosB. Dia 90: maestria executiva pré-frontal.',
+    },
+  ],
+  ja: [
+    {
+      q: '性的エネルギーの昇華とは何ですか？ ForgeEnergyはどう役立ちますか？',
+      a: '根源的な生体衝動を創造的・知的なディープワーク成果物へとダイレクトに転換する心理的生産性ツールです。',
+    },
+    {
+      q: 'なぜ2分間のボックス呼吸で衝動が治まるのですか？',
+      a: '米海軍特殊部隊（Navy SEALs）のボックス呼吸が迷走神経を刺激し、交感神経の過剰興奮を即座に鎮静させます。',
+    },
+    {
+      q: 'アージ・サーフィン（衝動の波乗り）とは何ですか？',
+      a: '衝動を「2〜3分で去る波」として静かに観察し、意志の消耗なく衝動を無力化する認知行動療法です。',
+    },
+    {
+      q: 'なぜForgeEnergyは100%クライアントサイド完結なのですか？',
+      a: '個人の習慣記録を完全に保護するため、サーバー通信・外部DB・Cookieを一切排除しています。',
+    },
+    {
+      q: '7日、14日、30日、90日目に起こる生体マイルストーンとは？',
+      a: '7日目にアンドロゲン受容体活性化（+145%）、14日目にドーパミン受容体再感受性化、30日目にDelta-FosB浄化、90日目に前頭前野の構造的統制が確立します。',
+    },
+  ],
+};
+
+const currentFaqItems = faqSchemaMap[locale] || faqSchemaMap.en;
+
+// Comprehensive Multi-Node Schema.org Graph for Google Rich Results
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': 'https://forgeenergy.github.io/#website',
+      url: 'https://forgeenergy.github.io/',
+      name: 'ForgeEnergy',
+      description: '100% Client-Side Energy Transmutation & Deep Work Vault',
+      inLanguage: ['en', 'es', 'fr', 'pt', 'ja'],
+      publisher: {
+        '@type': 'Person',
+        name: 'Kishara Dilz',
+        url: 'https://buymeacoffee.com/kisharadilz',
+      },
+    },
+    {
+      '@type': 'WebApplication',
+      '@id': 'https://forgeenergy.github.io/#webapp',
+      name: 'ForgeEnergy',
+      url: 'https://forgeenergy.github.io/',
+      inLanguage: ['en', 'es', 'fr', 'pt', 'ja'],
+      applicationCategory: 'HealthApplication, ProductivityApplication',
+      operatingSystem: 'All Modern Web Browsers',
+      browserRequirements: 'Requires JavaScript and LocalStorage support',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+      description:
+        'A 100% client-side sexual transmutation tool online, urge surfing app free, private focus streak tracker, and dopamine detox suite. Practice urge surfing with zero server data collection.',
+      keywords: [
+        'sexual transmutation tool online',
+        'urge surfing app free',
+        'private focus streak tracker',
+        'client side habit tracker',
+        'box breathing visualizer',
+        'deep work vault',
+        'dopamine detox tool',
+        'neurochemical habit tracker',
+      ],
+      screenshot: 'https://forgeenergy.github.io/og-image.png',
+      author: {
+        '@type': 'Person',
+        name: 'Kishara Dilz',
+        url: 'https://buymeacoffee.com/kisharadilz',
+      },
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': 'https://forgeenergy.github.io/#software',
+      name: 'ForgeEnergy Vault',
+      applicationCategory: 'Productivity',
+      operatingSystem: 'Any (Web Browser)',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+      featureList: [
+        'Tactical 2-minute box breathing visualizer (Navy SEAL method)',
+        '15-minute deep work sprint timer with Web Audio API harmonic chimes',
+        'Client-side LocalStorage habit and streak tracker',
+        'Real-world output ledger for code, reading, and physical PRs',
+        'One-click AES-GCM 256-bit encrypted backup and restore',
+        'Instant panic/stealth mode triggered by Escape key',
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${canonicalUrl}#faq`,
+      mainEntity: currentFaqItems.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.a,
+        },
+      })),
+    },
+    {
+      '@type': 'HowTo',
+      '@id': `${canonicalUrl}#howto`,
+      name: 'How to Transmute Compulsive Urges into Deep Work Focus',
+      description: 'A 3-step evidence-based protocol to intercept dopamine cravings and channel energy into creative output.',
+      step: [
+        {
+          '@type': 'HowToStep',
+          name: 'Somatic Interception (2-Minute Tactical Box Breathing)',
+          text: 'Engage in Navy SEAL 4-4-4-4 box breathing to stimulate the vagus nerve, rapidly lowering sympathetic nervous excitation and breaking the impulse loop.',
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Cognitive Reframing (Urge Surfing Protocol)',
+          text: 'Observe bodily sensations without judgment. Recognize that cravings peak within 2-3 minutes and dissolve like ocean waves.',
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Creative Anchoring (15-Minute Flow State Sprint)',
+          text: 'Channel the mobilized physiological power directly into writing code, reading, or creating tangible output, logging the result in your Energy Ledger.',
+        },
+      ],
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'ForgeEnergy',
+          item: 'https://forgeenergy.github.io/',
+        },
+        ...(locale !== 'en'
+          ? [
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: locale.toUpperCase(),
+                item: canonicalUrl,
+              },
+            ]
+          : []),
+      ],
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang={locale} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Favicon & PWA App Manifest -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- International hreflang Alternate Links for Global Search Engines -->
+    <link rel="alternate" hreflang="en" href={alternateUrls.en} />
+    <link rel="alternate" hreflang="es" href={alternateUrls.es} />
+    <link rel="alternate" hreflang="fr" href={alternateUrls.fr} />
+    <link rel="alternate" hreflang="pt" href={alternateUrls.pt} />
+    <link rel="alternate" hreflang="ja" href={alternateUrls.ja} />
+    <link rel="alternate" hreflang="x-default" href={alternateUrls.en} />
+
+    <!-- Primary SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="sexual transmutation tool online, urge surfing app free, private focus streak tracker, client side habit tracker, dopamine detox tool, box breathing visualizer, deep work timer, zero server productivity"
+    />
+    <meta name="author" content="Kishara Dilz" />
+    <link rel="author" href="https://buymeacoffee.com/kisharadilz" />
+
+    <!-- Search Engine Indexing & Bot Directives -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#F7F2EB" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0E0F0D" media="(prefers-color-scheme: dark)" />
+
+    <!-- Open Graph / Facebook / Discord / Slack Rich Previews -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="ForgeEnergy" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://forgeenergy.github.io/og-image.png" />
+    <meta property="og:image:secure_url" content="https://forgeenergy.github.io/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="ForgeEnergy - 100% Client-Side Energy Transmutation & Deep Work Vault" />
+    <meta property="og:locale" content={localeToOgLocale[locale] || 'en_US'} />
+
+    <!-- Twitter Summary Card with Large Image -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://forgeenergy.github.io/og-image.png" />
+    <meta name="twitter:image:alt" content="ForgeEnergy Vault Interface and Box Breathing Guide" />
+
+    <!-- Schema.org JSON-LD Structured Data Injection -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+    <!-- Theme Initialization Script (Avoids Flash of Unstyled Theme) -->
+    <script is:inline>
+      (function () {
+        try {
+          const savedTheme = localStorage.getItem('forge_theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-[#F7F2EB] dark:bg-[#0E0F0D] text-[#22241F] dark:text-[#EFECE6] min-h-screen">
+    <slot />
+  </body>
+</html>
