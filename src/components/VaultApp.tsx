@@ -237,7 +237,7 @@ export const VaultApp: React.FC<VaultAppProps> = ({ currentLocale }) => {
             </button>
             <span>•</span>
             <a
-              href="https://buymeacoffee.com/kisharadilz"
+              href="https://ko-fi.com/kishara"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#EAE2D6] dark:bg-[#181A15] hover:bg-[#8B9A6E] hover:text-white border border-[#DDD5C7] dark:border-[#2C3026] text-[#3D452E] dark:text-[#CCD4C5] transition-all font-semibold"

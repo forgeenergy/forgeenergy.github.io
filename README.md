@@ -4,7 +4,7 @@
 > A privacy-first, zero-server psychological productivity suite built with Astro, React Islands, and Tailwind CSS. Helps creators, engineers, and professionals channel compulsive urges into creative, intellectual, and physical output with zero data collection.
 
 🌐 **Live URL:** [https://forgeenergy.github.io](https://forgeenergy.github.io)  
-☕ **Support Developer:** [Buy Me a Coffee](https://buymeacoffee.com/kisharadilz)
+☕ **Support Developer:** [Ko-fi](https://ko-fi.com/kishara)
 
 ---
 

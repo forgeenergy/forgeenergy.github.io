@@ -285,7 +285,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* 6. Support Developer CTA (Desktop and Tablet sm+) */}
           <a
-            href="https://buymeacoffee.com/kisharadilz"
+            href="https://ko-fi.com/kishara"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:flex items-center gap-1.5 p-2 lg:px-3 lg:py-1.5 rounded-lg text-xs font-semibold bg-[#8B9A6E] text-white hover:bg-[#78875C] shadow-soft-sm hover:shadow-glow-sage transition-all transform active:scale-95"
@@ -442,13 +442,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Support Developer Button in Mobile Drawer */}
             <div className="pt-3 border-t border-[#DDD5C7] dark:border-[#242720]">
               <a
-                href="https://buymeacoffee.com/kisharadilz"
+                href="https://ko-fi.com/kishara"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#8B9A6E] text-white font-bold text-xs shadow-soft-sm active:scale-95 transition-transform"
               >
                 <Coffee className="w-4 h-4 text-white" />
-                <span>{t.support} (Buy Me a Coffee)</span>
+                <span>{t.support} (Ko-fi)</span>
               </a>
             </div>
           </div>
