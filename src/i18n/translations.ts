@@ -312,7 +312,7 @@ export const translations: Record<Locale, Translations> = {
     footer: {
       zeroServerBadge: 'Zero-Server Architecture • 100% Privacy Guaranteed',
       zeroServerDetail: 'No server cookies, no cloud telemetry, no account required. Built for uncompromising privacy.',
-      supportMe: 'Support the Developer on Ko-fi',
+      supportMe: 'Support the Developer on Gumroad',
       madeWith: 'Forged for creators, engineers, and focused minds.',
       rights: 'ForgeEnergy Open Source • Hosted on GitHub Pages',
     },
@@ -482,7 +482,7 @@ export const translations: Record<Locale, Translations> = {
     footer: {
       zeroServerBadge: 'Arquitectura Cero Servidor • Privacidad 100% Garantizada',
       zeroServerDetail: 'Sin cookies, sin analíticas, sin cuenta requerida. Diseñado para privacidad absoluta.',
-      supportMe: 'Apoya al Desarrollador en Ko-fi',
+      supportMe: 'Apoya al Desarrollador en Gumroad',
       madeWith: 'Forjado para creadores, ingenieros y mentes disciplinadas.',
       rights: 'ForgeEnergy Código Abierto • Alojado en GitHub Pages',
     },
@@ -652,7 +652,7 @@ export const translations: Record<Locale, Translations> = {
     footer: {
       zeroServerBadge: 'Architecture Zéro Serveur • Confidentialité 100% Garantie',
       zeroServerDetail: 'Sans cookies, sans cloud, sans compte. Conçu pour une vie privée absolue.',
-      supportMe: 'Soutenir le Développeur sur Ko-fi',
+      supportMe: 'Soutenir le Développeur sur Gumroad',
       madeWith: 'Forgé pour les créateurs, ingénieurs et esprits disciplinés.',
       rights: 'ForgeEnergy Open Source • Hébergé sur GitHub Pages',
     },
@@ -822,7 +822,7 @@ export const translations: Record<Locale, Translations> = {
     footer: {
       zeroServerBadge: 'Arquitetura Zero Servidor • Privacidade 100% Garantida',
       zeroServerDetail: 'Sem cookies, sem nuvem, sem login. Criado para privacidade intransigente.',
-      supportMe: 'Apoie o Desenvolvedor no Ko-fi',
+      supportMe: 'Apoie o Desenvolvedor no Gumroad',
       madeWith: 'Forjado para criadores, programadores e mentes disciplinadas.',
       rights: 'ForgeEnergy Código Aberto • Hospedado no GitHub Pages',
     },
@@ -992,7 +992,7 @@ export const translations: Record<Locale, Translations> = {
     footer: {
       zeroServerBadge: 'ゼロサーバー・アーキテクチャ • 100% プライバシー保証',
       zeroServerDetail: 'クッキーなし、クラウドなし、アカウント不要。完全な個人主権のために設計されています。',
-      supportMe: 'Ko-fi で開発者を支援する',
+      supportMe: 'Gumroad で開発者を支援する',
       madeWith: '規律あるクリエイター、エンジニア、思索者のために。',
       rights: 'ForgeEnergy オープンソース • GitHub Pages にてホスト',
     },
